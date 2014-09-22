@@ -1,4 +1,4 @@
-import com.ericsmith.SocketHandler;
+import com.blackhawks.SocketHandler;
 
 public class EchoHandler implements SocketHandler {
 }

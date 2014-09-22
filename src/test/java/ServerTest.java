@@ -1,4 +1,4 @@
-import com.ericsmith.Server;
+import com.blackhawks.Server;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;

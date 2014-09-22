@@ -1,5 +1,5 @@
-import com.ericsmith.*;
-import com.ericsmith.Socket;
+import com.blackhawks.InternetSocket;
+import com.blackhawks.Socket;
 import org.junit.Test;
 
 import java.io.BufferedReader;

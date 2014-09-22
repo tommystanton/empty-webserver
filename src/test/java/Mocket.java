@@ -1,4 +1,4 @@
-import com.ericsmith.Socket;
+import com.blackhawks.Socket;
 
 public class Mocket implements Socket {
     public boolean Started;
