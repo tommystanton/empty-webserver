@@ -3,6 +3,10 @@ import java.net.ServerSocket;
 
 public class InternetSocket implements Socket {
 
+    public InternetSocket(SocketHandler handler) {
+
+    }
+
     @Override
     public void start() {
         try {
