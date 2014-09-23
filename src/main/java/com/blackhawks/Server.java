@@ -1,25 +1,21 @@
 package com.blackhawks;
 
-import java.net.ServerSocket;
-import java.net.Socket;
-
 public class Server {
 
-  private static ServerSocket serverSocket;
-  private static Socket clientSocket;
+  private Socket socket;
 
-  public static void start() throws Exception
-  {
-    serverSocket = new ServerSocket(5000);
+  public Server(Socket socket) {
+    this.socket = socket;
   }
 
-  public static void stop() throws Exception {
-    serverSocket.close();
+  public static void main(String[] args)
+  {
+    WebserviceHandler handler = new WebserviceHandler();
+    Server server = new Server(new InternetSocket(handler));
+    server.run();
   }
 
-  public static void main(String[] args) throws Exception
-  {
-    start();
-    stop();
+  public void run() {
+    socket.start();
   }
 }

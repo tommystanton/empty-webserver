@@ -1,19 +1,17 @@
 import org.junit.*;
+import static org.junit.Assert.*;
 
 import com.blackhawks.Server;
 
-import java.net.Socket;
+public class ServerTest {
 
-public class ServerTest
-{
   @Test
-  public void ItOpensASocketOnTheExpectedPort() throws Exception
-  {
-    Server server = new Server();
-    Server.start();
+  public void ItStartsASocket() {
+    Mocket mocket = new Mocket();
+    Server server = new Server(mocket);
 
-    Socket socket = new Socket("127.0.0.1", 5000);
+    server.run();
 
-    Server.stop();
+    assertTrue(mocket.Started);
   }
 }
