@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 public class InternetSocket implements Socket {
   private SocketHandler handler;
   private java.net.Socket socket;
+  private ServerSocket serverSocket;
 
   public InternetSocket(SocketHandler handler) {
     this.handler = handler;
@@ -15,7 +16,6 @@ public class InternetSocket implements Socket {
 
   @Override
   public void start() {
-    ServerSocket serverSocket = null;
     try {
       serverSocket = new ServerSocket(5000);
       socket = serverSocket.accept();
@@ -34,5 +34,10 @@ public class InternetSocket implements Socket {
           e1.printStackTrace();
         }
     }
+  }
+
+  @Override
+  public void close() throws IOException {
+    serverSocket.close();
   }
 }

@@ -12,16 +12,12 @@ import static org.junit.Assert.assertEquals;
 
 public class InternetSocketTest {
 
-  private InetAddress host;
-  private EchoHandler handler;
-  private Socket socket;
-  private java.net.Socket client;
-
-  @Before
-  public void setup() throws IOException {
-    host = InetAddress.getLocalHost();
-    handler = new EchoHandler();
-    socket = new InternetSocket(handler);
+  @Test
+  public void StartsTheSocket() throws Exception
+  {
+    InetAddress host = InetAddress.getLocalHost();
+    EchoHandler handler = new EchoHandler();
+    final Socket socket = new InternetSocket(handler);
 
     new Thread() {
       public void run() {
@@ -29,17 +25,8 @@ public class InternetSocketTest {
       }
     }.start();
 
-    client = new java.net.Socket(host.getHostName(), 5000);
-  }
+    java.net.Socket client = new java.net.Socket(host.getHostName(), 5000);
 
-  @After
-  public void done() throws IOException {
-    client.close();
-  }
-
-  @Test
-  public void StartsTheSocket() throws Exception
-  {
     PrintWriter out = new PrintWriter(client.getOutputStream());
     BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 
@@ -47,5 +34,33 @@ public class InternetSocketTest {
     out.flush();
 
     assertEquals("Test", in.readLine());
+    //  client.close();
+    socket.close();
+  }
+
+  @Test
+  public void Gets404() throws Exception
+  {
+    InetAddress host = InetAddress.getLocalHost();
+    EchoHandler handler = new EchoHandler();
+    final Socket socket = new InternetSocket(handler);
+
+    new Thread() {
+      public void run() {
+        socket.start();
+      }
+    }.start();
+
+    java.net.Socket client = new java.net.Socket(host.getHostName(), 5000);
+
+    PrintWriter out = new PrintWriter(client.getOutputStream());
+    BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+
+    out.println("GET /foobar HTTP/1.1\n");
+    out.flush();
+
+    assertEquals("GET /foobar HTTP/1.1", in.readLine());
+    // client.close();
+    socket.close();
   }
 }
