@@ -15,5 +15,7 @@ public class ParameterDecodeTest {
         pd = new ParameterDecode( url );
         assertEquals("stuff", pd.getNewQueryParam("variable_2"));
 
+        assertEquals("Operators <, >, =, !=; +, -, *, &, @, #, $, [, ]: \"is that all\"?",pd.getNewQueryParam("variable_1") );
+
     }
 }

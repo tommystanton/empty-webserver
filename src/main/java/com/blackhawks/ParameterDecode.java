@@ -8,15 +8,15 @@ import java.util.Map;
 
 public class ParameterDecode {
 
-    public ParameterDecode(URL url) throws UnsupportedEncodingException {
+    public static Map<String, String> queryPairs = new LinkedHashMap<String, String>();
+
+    public ParameterDecode( URL url) throws UnsupportedEncodingException {
         try {
             splitQuery(url);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
-
-    public static Map<String, String> queryPairs = new LinkedHashMap<String, String>();
 
     public static void splitQuery(URL url) throws UnsupportedEncodingException {
         String query = url.getQuery();
