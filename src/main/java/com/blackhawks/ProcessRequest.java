@@ -3,10 +3,6 @@ package com.blackhawks;
 import java.io.*;
 import java.util.StringTokenizer;
 
-
-/**
- * Created by devuser on 9/23/2014.
- */
 public class ProcessRequest {
     private final PrintWriter o;
     private final String i;

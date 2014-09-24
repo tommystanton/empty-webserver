@@ -1,18 +1,10 @@
-import com.blackhawks.ParameterDecode;
-import com.blackhawks.ContentType;
-import com.blackhawks.ProcessRequest;
-import com.blackhawks.Request;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-import com.blackhawks.Server;
-
 import java.net.URL;
 
+import com.blackhawks.ParameterDecode;
 
-/**
- * Created by devuser on 9/24/2014.
- */
 public class ParameterDecodeTest {
 
     @Test
@@ -24,6 +16,4 @@ public class ParameterDecodeTest {
         assertEquals("stuff", pd.getNewQueryParam("variable_2"));
 
     }
-
-
 }

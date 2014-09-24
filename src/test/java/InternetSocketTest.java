@@ -11,39 +11,38 @@ import static org.junit.Assert.assertEquals;
 
 public class InternetSocketTest {
 
-  @Test
-  public void StartsTheSocket() throws Exception
-  {
-    InetAddress host = InetAddress.getLocalHost();
-    EchoHandler handler = new EchoHandler();
-    final Socket socket = new InternetSocket(handler);
+    @Test
+    public void StartsTheSocket() throws Exception
+    {
+        InetAddress host = InetAddress.getLocalHost();
+        EchoHandler handler = new EchoHandler();
+        final Socket socket = new InternetSocket(handler);
 
-    Thread thread = new Thread(
-      new Runnable() {
-        @Override
-        public void run() {
-          socket.start();
+        Thread thread = new Thread(
+            new Runnable() {
+                @Override
+                public void run() {
+                    socket.start();
+                }
+             }
+        );
+
+        thread.start();
+
+        java.net.Socket client = new java.net.Socket(host.getHostName(), 5000);
+
+        try {
+            PrintWriter out = new PrintWriter(client.getOutputStream());
+            BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+
+            out.println("Test\n");
+            out.flush();
+
+            assertEquals("Test", in.readLine());
         }
-      }
-    );
-
-    thread.start();
-
-    java.net.Socket client = new java.net.Socket(host.getHostName(), 5000);
-
-    try {
-      PrintWriter out = new PrintWriter(client.getOutputStream());
-      BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-
-      out.println("Test\n");
-      out.flush();
-
-      assertEquals("Test", in.readLine());
+        finally {
+            client.close();
+            thread.interrupt();
+        }
     }
-    finally {
-      client.close();
-      thread.interrupt();
-    }
-
-  }
 }

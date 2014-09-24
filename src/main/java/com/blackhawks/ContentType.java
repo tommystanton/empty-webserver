@@ -1,8 +1,5 @@
 package com.blackhawks;
 
-/**
- * Created by devuser on 9/23/2014.
- */
 public class ContentType {
 
     public String returnType(String fileName) {
