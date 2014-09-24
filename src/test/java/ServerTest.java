@@ -1,3 +1,5 @@
+import com.blackhawks.ContentType;
+import com.blackhawks.ProcessRequest;
 import com.blackhawks.Request;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -27,5 +29,21 @@ public class ServerTest {
     assertEquals("HTTP/1.1", request.getHttpVersion());
   }
 
+    @Test
+    public void return404() throws Exception
+    {
+        String req = "/foobar";
+        ContentType ct = new ContentType();
 
+        assertEquals("404 error", ct.returnType(req));
+    }
+
+    @Test
+    public void returnImage() throws Exception
+    {
+        String req = "thisisimage.gif";
+        ContentType ct = new ContentType();
+
+        assertEquals("image/gif", ct.returnType(req));
+    }
 }
