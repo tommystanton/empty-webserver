@@ -18,11 +18,16 @@ public class InternetSocketTest {
         EchoHandler handler = new EchoHandler();
         final Socket socket = new InternetSocket(handler);
 
-        new Thread() {
-            public void run() {
-                socket.start();
+        Thread thread = new Thread(
+            new Runnable() {
+              @Override
+              public void run() {
+                  socket.start();
+              }
             }
-        }.start();
+        );
+
+        thread.start();
 
         java.net.Socket client = new java.net.Socket(host.getHostName(), 5000);
 
@@ -37,6 +42,7 @@ public class InternetSocketTest {
         }
         finally {
             client.close();
+            thread.interrupt();
         }
 
     }
