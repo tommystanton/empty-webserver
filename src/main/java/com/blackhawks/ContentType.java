@@ -15,7 +15,7 @@ public class ContentType {
             return "image/png";
         } else {
             //return "application/octet-stream";
-            return "404 error";
+            return "HTTP/1.0 404 Not Found";
         }
     }
 }

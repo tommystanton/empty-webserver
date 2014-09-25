@@ -31,7 +31,8 @@ public class PartialContent {
     }
 
     public String readFileIn() throws IOException {
-        try(BufferedReader br = new BufferedReader(new FileReader(fileRef))) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(fileRef));
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
 

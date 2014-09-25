@@ -1,10 +1,16 @@
-import com.blackhawks.Socket;
+import java.net.Socket;
 
-public class Mocket implements Socket {
-    public boolean Started;
+public class Mocket {
+  private Socket socket;
+  private boolean closed;
 
-    @Override
-    public void start() {
-        Started = true;
-    }
+  public Mocket() {
+    socket = new Socket();
+  }
+  public Socket getSocket() {
+    return socket;
+  }
+  public boolean isClosed() {
+    return socket.isClosed();
+  }
 }

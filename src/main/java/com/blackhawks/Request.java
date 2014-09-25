@@ -10,7 +10,6 @@ public class Request {
         httpMethod = req.split("\\s+")[0];
         url = req.split("\\s+")[1];
         httpVersion = req.split("\\s+")[2];
-
     }
 
     public String getHttpMethod() {
