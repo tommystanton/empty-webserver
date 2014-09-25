@@ -15,8 +15,6 @@ public class FileContentTest {
         fixtureFilePath = concat(fixtureFilePath, "src/test/fixtures/partial_content.txt");
         fixtureFilePath = separatorsToSystem(fixtureFilePath);
         PartialContent pc = new PartialContent(fixtureFilePath, 9);
-        System.out.println(pc.readFileIn().length());
-
         assertEquals(true, pc.readFileIn().length() > 0);
     }
 
