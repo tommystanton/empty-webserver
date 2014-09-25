@@ -43,9 +43,7 @@ public class PartialContent {
             readInHolder = sb.toString();
             return readInHolder;
         }catch ( IOException e){
-            System.out.print("DUDE ERROR WITH YO FILE!!!" + e );
+            return null;
         }
-
-        return null;
     }
 }
