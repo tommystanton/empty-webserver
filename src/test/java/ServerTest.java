@@ -34,7 +34,7 @@ public class ServerTest {
         String req = "/foobar";
         ContentType ct = new ContentType();
 
-        assertEquals("404 error", ct.returnType(req));
+        assertEquals("HTTP/1.0 404 Not Found", ct.returnType(req));
     }
 
     @Test
