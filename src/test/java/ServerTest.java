@@ -38,11 +38,27 @@ public class ServerTest {
     }
 
     @Test
-    public void returnImage() throws Exception
+    public void returnImageGif() throws Exception
     {
         String req = "thisisimage.gif";
         ContentType ct = new ContentType();
 
         assertEquals("image/gif", ct.returnType(req));
+    }
+    @Test
+    public void returnImagePng() throws Exception
+    {
+        String req = "thisisimage.png";
+        ContentType ct = new ContentType();
+
+        assertEquals("image/png", ct.returnType(req));
+    }
+    @Test
+    public void returnImageJpeg() throws Exception
+    {
+        String req = "thisisimage.jpeg";
+        ContentType ct = new ContentType();
+
+        assertEquals("image/jpeg", ct.returnType(req));
     }
 }

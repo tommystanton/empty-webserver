@@ -21,4 +21,13 @@ public class PartialContentTest {
         assertEquals("FIRSTWORD", pc.getByteStreamByCount());
     }
 
+    @Test
+    public void testForFileNotFoundException() throws Exception
+    {
+        String content = "C:\\Users\\devuser\\partial_content-NOTEXIST.txt";
+        PartialContent pc = new PartialContent(content, 9);
+
+        assertEquals("404 File Not Found", pc.getByteStreamByCount());
+    }
+
 }

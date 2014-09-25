@@ -9,7 +9,7 @@ public class PartialContent {
     private int byteCountMax;
     private String returnByByte;
 
-    public PartialContent( String str, int cnt ){
+    public PartialContent( String str, int cnt ) throws FileNotFoundException{
         byteCountMax = cnt;
         fileRef = str;
     }
@@ -24,7 +24,7 @@ public class PartialContent {
                 returnByByte = new String(chars);
                 reader.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                returnByByte = "404 File Not Found";
             }
             return returnByByte;
         }

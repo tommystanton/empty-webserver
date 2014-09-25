@@ -11,6 +11,8 @@ public class ContentType {
             return "image/jpeg";
         } else if (fileName.endsWith(".gif")) {
             return "image/gif";
+        } else if (fileName.endsWith(".png")) {
+            return "image/png";
         } else {
             //return "application/octet-stream";
             return "404 error";
