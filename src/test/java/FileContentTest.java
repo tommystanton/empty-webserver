@@ -10,10 +10,7 @@ public class FileContentTest {
     @Test
     public void testIfFileHasContents() throws Exception {
 
-        String fixtureFilePath;
-        fixtureFilePath = System.getProperty("user.dir");
-        fixtureFilePath = concat(fixtureFilePath, "src/test/fixtures/partial_content.txt");
-        fixtureFilePath = separatorsToSystem(fixtureFilePath);
+        String fixtureFilePath = separatorsToSystem("src/test/fixtures/partial_content.txt");
         PartialContent pc = new PartialContent(fixtureFilePath, 9);
         assertEquals(true, pc.readFileIn().length() > 0);
     }
@@ -22,10 +19,7 @@ public class FileContentTest {
     @Test
     public void testIfFileHasNoContents() throws Exception {
 
-        String fixtureFilePath;
-        fixtureFilePath = System.getProperty("user.dir");
-        fixtureFilePath = concat(fixtureFilePath, "src/test/fixtures/partial_content_empty.txt");
-        fixtureFilePath = separatorsToSystem(fixtureFilePath);
+        String fixtureFilePath = separatorsToSystem("src/test/fixtures/partial_content_empty.txt");
         PartialContent pc = new PartialContent(fixtureFilePath, 9);
         assertEquals(false, pc.readFileIn().length() > 0);
     }
