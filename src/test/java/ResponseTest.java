@@ -17,9 +17,11 @@ public class ResponseTest {
         Response response = handler.respond(request);
 
         byte[] statusLine = response.getStatusLine();
+        byte[] responseHeaderFields = response.getResponseHeaderFields();
         byte[] body = response.getBody();
 
         assertEquals("HTTP/1.1 404 Not Found", new String(statusLine));
+        assertEquals("Content-Type: text/plain; charset=UTF-8", new String(responseHeaderFields));
         assertEquals("", new String(body));
     }
 
@@ -32,9 +34,11 @@ public class ResponseTest {
         Response response = handler.respond(request);
 
         byte[] statusLine = response.getStatusLine();
+        byte[] responseHeaderFields = response.getResponseHeaderFields();
         byte[] body = response.getBody();
 
         assertEquals("HTTP/1.1 200 OK", new String(statusLine));
+        assertEquals("Content-Type: text/plain; charset=UTF-8", new String(responseHeaderFields));
         assertTrue(new String(body).matches(".*file1.*"));
     }
 
@@ -47,13 +51,13 @@ public class ResponseTest {
         Response response = handler.respond(request);
 
         byte[] statusLine = response.getStatusLine();
+        byte[] responseHeaderFields = response.getResponseHeaderFields();
         byte[] body = response.getBody();
 
         assertEquals("HTTP/1.1 200 OK", new String(statusLine));
+        assertEquals("Content-Type: text/plain; charset=UTF-8", new String(responseHeaderFields));
         assertTrue(new String(body).matches(".*<a href='file1'>file1</a>.*"));
         assertTrue(new String(body).matches(".*<a href='file2'>file2</a>.*"));
-
-
     }
 
     @Test
@@ -65,9 +69,11 @@ public class ResponseTest {
         Response response = handler.respond(request);
 
         byte[] statusLine = response.getStatusLine();
+        byte[] responseHeaderFields = response.getResponseHeaderFields();
         byte[] body = response.getBody();
 
         assertEquals("HTTP/1.1 200 OK", new String(statusLine));
+        assertEquals("Content-Type: text/plain; charset=UTF-8", new String(responseHeaderFields));
         assertEquals("", new String(body));
     }
 
@@ -80,9 +86,11 @@ public class ResponseTest {
         Response response = handler.respond(request);
 
         byte[] statusLine = response.getStatusLine();
+        byte[] responseHeaderFields = response.getResponseHeaderFields();
         byte[] body = response.getBody();
 
         assertEquals("HTTP/1.1 200 OK", new String(statusLine));
+        assertEquals("Content-Type: text/plain; charset=UTF-8", new String(responseHeaderFields));
         assertEquals("hello", new String(body));
     }
 }

@@ -32,12 +32,13 @@ public class InternetSocket implements Socket {
                 Request request = new Request(input);
                 response = handler.respond(request);
 
-                // HTTP response: status line + headers
+                // HTTP response: status line + header fields
                 out.write(response.getStatusLine());
                 out.write("\r\n".getBytes());
-                // TODO Determine response headers dynamically
-                //out.write(("Content-Type: text/plain; charset=  UTF-8" + "\r\n").getBytes());
-                // TODO Content-Length
+                out.write(response.getResponseHeaderFields());
+
+                // HTTP response: blank line (required)
+                out.write("\r\n".getBytes());
 
                 // HTTP response: body (optional)
                 out.write("\r\n".getBytes());
