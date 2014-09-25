@@ -6,8 +6,8 @@ import com.blackhawks.ProcessRequest;
 import com.blackhawks.Request;
 import org.junit.*;
 
-import java.io.Reader;
 
+import static org.apache.commons.io.FilenameUtils.*;
 import static org.junit.Assert.*;
 
 public class PartialContentTest {
@@ -15,8 +15,12 @@ public class PartialContentTest {
     @Test
     public void testByteStream() throws Exception {
 
-        String content = "C:\\Users\\devuser\\partial_content.txt";
-        PartialContent pc = new PartialContent(content, 9);
+        String fixtureFilePath;
+        fixtureFilePath = System.getProperty("user.dir");
+        fixtureFilePath = concat(fixtureFilePath, "src/test/fixtures/partial_content.txt");
+        fixtureFilePath = separatorsToSystem(fixtureFilePath);
+
+        PartialContent pc = new PartialContent(fixtureFilePath, 9);
 
         assertEquals("FIRSTWORD", pc.getByteStreamByCount());
     }
