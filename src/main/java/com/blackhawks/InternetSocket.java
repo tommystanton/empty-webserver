@@ -8,9 +8,11 @@ import java.net.ServerSocket;
 public class InternetSocket implements Socket {
     private SocketHandler handler;
     private java.net.Socket socket;
+    private Response response;
 
     public InternetSocket(SocketHandler handler) {
         this.handler = handler;
+        this.response = new Response();
     }
 
     @Override
@@ -25,7 +27,7 @@ public class InternetSocket implements Socket {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String input = in.readLine();
 
-            out.println("HTTP/1.1 404 Not Found\r\n");
+            out.println(response.getStatusLine(404) + "\r\n");
             out.flush();
 
             socket.close();
