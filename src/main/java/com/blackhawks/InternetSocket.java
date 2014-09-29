@@ -27,6 +27,8 @@ public class InternetSocket implements Socket {
 
             out.println("HTTP/1.1 404 Not Found\r\n");
             out.flush();
+
+            socket.close();
         }
         catch (Exception e)
         {
