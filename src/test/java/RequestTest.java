@@ -5,9 +5,8 @@ import static org.junit.Assert.assertEquals;
 
 public class RequestTest {
 
-
     @Test
-    public void itCanParse200() throws Exception
+    public void itCanParseAGetRequest() throws Exception
     {
         Request request = new Request("GET / HTTP/1.1");
 
