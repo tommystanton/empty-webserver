@@ -1,15 +1,22 @@
 package com.blackhawks;
 
 public class Response {
-    public String getStatusLine(int httpCode) {
+
+    private Request request;
+
+    public Response(Request request) {
+        this.request = request;
+    }
+
+    public String getStatusLine() {
         String statusCode = "HTTP/1.1 500";
         String reasonMessage = "Internal Server Error";
 
-        if(httpCode == 404) {
+        if(request.getResource().equals("/foobar")) {
             statusCode = "HTTP/1.1 404";
             reasonMessage = "Not Found";
         }
-        else if(httpCode == 200) {
+        else if(request.getResource().equals("/")) {
             statusCode = "HTTP/1.1 200";
             reasonMessage = "OK";
         }

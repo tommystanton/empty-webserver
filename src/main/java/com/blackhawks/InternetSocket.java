@@ -12,7 +12,6 @@ public class InternetSocket implements Socket {
 
     public InternetSocket(SocketHandler handler) {
         this.handler = handler;
-        this.response = new Response();
     }
 
     @Override
@@ -27,7 +26,8 @@ public class InternetSocket implements Socket {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String input = in.readLine();
 
-            out.println(response.getStatusLine(404) + "\r\n");
+            response = new Response(new Request("GET / HTTP/1.1"));
+            out.println(response.getStatusLine() + "\r\n");
             out.flush();
 
             socket.close();
