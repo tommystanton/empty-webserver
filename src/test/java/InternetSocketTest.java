@@ -42,7 +42,6 @@ public class InternetSocketTest {
         }
         finally {
             client.close();
-            thread.interrupt();
         }
     }
 }
