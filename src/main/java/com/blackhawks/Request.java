@@ -21,12 +21,15 @@ public class Request {
 
     private void parseResource() {
         String[] parsed = resource.split("\\?");
-        if(parsed.length > 1) {
-            parsed = parsed[1].split("=");
-            String key = parsed[0];
-            String value = parsed[1];
 
-            params.put(key, URLDecoder.decode(value));
+        if(parsed.length > 1) {
+            String[] pairs = parsed[1].split("&");
+            for (String pair : pairs) {
+                String[] keyValue = pair.split("=");
+                String key = keyValue[0];
+                String value = keyValue[1];
+                params.put(key, URLDecoder.decode(value));
+            }
         }
     }
 
