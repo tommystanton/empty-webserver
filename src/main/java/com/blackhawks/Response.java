@@ -12,8 +12,9 @@ public class Response {
 
     public String getStatusLine() {
         String resource = request.getResource();
-        String statusCode = "HTTP/1.1 500";
-        String reasonMessage = "Internal Server Error";
+        String statusCode;
+        String reasonMessage;
+
         if(router.isResourceExistent(resource)) {
             statusCode = "HTTP/1.1 200";
             reasonMessage = "OK";
