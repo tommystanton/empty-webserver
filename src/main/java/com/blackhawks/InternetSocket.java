@@ -19,10 +19,13 @@ public class InternetSocket implements Socket {
         try {
             serverSocket = new ServerSocket(5000);
             socket = serverSocket.accept();
+
             PrintWriter out = new PrintWriter(socket.getOutputStream());
+
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String input = in.readLine();
-            out.println(input);
+
+            out.println("HTTP/1.1 404 Not Found\r\n");
             out.flush();
         }
         catch (Exception e)
