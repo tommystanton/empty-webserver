@@ -20,4 +20,12 @@ public class ResponseTest {
         Response response = new Response(request);
         assertEquals("HTTP/1.1 200 OK", response.getStatusLine());
     }
+
+    @Test
+    public void itCanHandlePost() throws Exception
+    {
+        Request request = new Request("POST /form HTTP/1.1");
+        Response response = new Response(request);
+        assertEquals("HTTP/1.1 200 OK", response.getStatusLine());
+    }
 }

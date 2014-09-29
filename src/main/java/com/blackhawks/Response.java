@@ -22,6 +22,10 @@ public class Response {
             statusCode = "HTTP/1.1 200";
             reasonMessage = "OK";
         }
+        else if(resource.equals("/form")) {
+            statusCode = "HTTP/1.1 200";
+            reasonMessage = "OK";
+        }
 
         return statusCode + " " + reasonMessage;
     }
