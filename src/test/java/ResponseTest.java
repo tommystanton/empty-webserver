@@ -10,4 +10,11 @@ public class ResponseTest {
         Response response = new Response();
         assertEquals("HTTP/1.1 404 Not Found", response.getStatusLine(404));
     }
+
+    @Test
+    public void itCanHandle200() throws Exception
+    {
+        Response response = new Response();
+        assertEquals("HTTP/1.1 200 OK", response.getStatusLine(200));
+    }
 }
