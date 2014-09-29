@@ -9,14 +9,16 @@ public class Response {
     }
 
     public String getStatusLine() {
+        String resource = request.getResource();
+
         String statusCode = "HTTP/1.1 500";
         String reasonMessage = "Internal Server Error";
 
-        if(request.getResource().equals("/foobar")) {
+        if(resource.equals("/foobar")) {
             statusCode = "HTTP/1.1 404";
             reasonMessage = "Not Found";
         }
-        else if(request.getResource().equals("/")) {
+        else if(resource.equals("/")) {
             statusCode = "HTTP/1.1 200";
             reasonMessage = "OK";
         }
