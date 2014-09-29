@@ -3,28 +3,24 @@ package com.blackhawks;
 public class Response {
 
     private Request request;
+    private Router router;
 
     public Response(Request request) {
         this.request = request;
+        this.router = new Router();
     }
 
     public String getStatusLine() {
         String resource = request.getResource();
-
         String statusCode = "HTTP/1.1 500";
         String reasonMessage = "Internal Server Error";
-
-        if(resource.equals("/foobar")) {
+        if(router.isResourceExistent(resource)) {
+            statusCode = "HTTP/1.1 200";
+            reasonMessage = "OK";
+        }
+        else {
             statusCode = "HTTP/1.1 404";
             reasonMessage = "Not Found";
-        }
-        else if(resource.equals("/")) {
-            statusCode = "HTTP/1.1 200";
-            reasonMessage = "OK";
-        }
-        else if(resource.equals("/form")) {
-            statusCode = "HTTP/1.1 200";
-            reasonMessage = "OK";
         }
 
         return statusCode + " " + reasonMessage;
