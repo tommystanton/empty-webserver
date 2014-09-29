@@ -17,29 +17,29 @@ public class InternetSocket implements Socket {
     @Override
     public void start() {
         ServerSocket serverSocket = null;
-        try {
-            serverSocket = new ServerSocket(5000);
-            socket = serverSocket.accept();
+        while(true) {
+            try {
+                serverSocket = new ServerSocket(5000);
+                socket = serverSocket.accept();
 
-            PrintWriter out = new PrintWriter(socket.getOutputStream());
+                PrintWriter out = new PrintWriter(socket.getOutputStream());
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            String input = in.readLine();
+                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                String input = in.readLine();
 
-            response = new Response(new Request(input));
-            out.println(response.getStatusLine() + "\r\n");
-            out.flush();
+                response = new Response(new Request(input));
+                out.println(response.getStatusLine() + "\r\n");
+                out.flush();
 
-            socket.close();
-        }
-        catch (Exception e)
-        {
-            if (serverSocket != null)
-                try {
-                    serverSocket.close();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+                socket.close();
+            } catch (Exception e) {
+                if (serverSocket != null)
+                    try {
+                        serverSocket.close();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+            }
         }
     }
 }
