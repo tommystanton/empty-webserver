@@ -1,10 +1,11 @@
 import com.blackhawks.Request;
 import com.blackhawks.RequestHandler;
-import com.blackhawks.Router;
-import org.junit.*;
-import static org.junit.Assert.*;
-
 import com.blackhawks.Response;
+import com.blackhawks.Router;
+import org.junit.Test;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class ResponseTest {
     @Test
@@ -49,5 +50,19 @@ public class ResponseTest {
         Response response = handler.respond(request);
 
         assertEquals("HTTP/1.1 200 OK", response.getStatusLine());
+    }
+
+    @Test
+    public void itRespondsWithABodySayingHello() throws Exception
+    {
+        RequestHandler handler = new RequestHandler(new Router());
+
+        Request request = new Request("GET /hello HTTP/1.1");
+        Response response = handler.respond(request);
+
+        byte[] body = response.getBody();
+
+        assertEquals("HTTP/1.1 200 OK", response.getStatusLine());
+        assertArrayEquals("hello".getBytes(), body);
     }
 }

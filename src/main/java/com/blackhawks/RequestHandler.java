@@ -8,10 +8,17 @@ public class RequestHandler {
     }
 
     public Response respond(Request request) {
+        String path = request.getPath();
+
         Response response = new Response(); // TODO Decouple?
 
         String statusLine = getStatusLine(request);
         response.setStatusLine(statusLine);
+
+        if(router.isResourceExistent(path)) {
+            byte[] body = router.executeRoute(path);
+            response.setBody(body);
+        }
 
         return response;
     }

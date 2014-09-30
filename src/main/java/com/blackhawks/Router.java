@@ -1,10 +1,12 @@
 package com.blackhawks;
 
+import com.blackhawks.routes.*;
+
 import java.util.HashMap;
 
 public class Router implements RoutingTable {
 
-    private HashMap<String, Boolean> routes;
+    private HashMap<String, RouteDefinition> routes;
 
     public Router() {
         this.routes = new HashMap<>();
@@ -12,15 +14,22 @@ public class Router implements RoutingTable {
     }
 
     private void setRoutes() {
-        routes.put("/", true);
-        routes.put("/form", true);
+        routes.put("/", new EmptyRouteDefinition());
+        routes.put("/form", new EmptyRouteDefinition());
+        routes.put("/hello", new HelloRouteDefinition());
+    }
+
+    public byte[] executeRoute(String path) { // add exception or try/catch and throw custom message
+        RouteDefinition routeDefintion = routes.get(path);
+        byte[] data = routeDefintion.execute();
+        return data;
     }
 
     @Override
     public boolean isResourceExistent(String path) {
 
         if(routes.containsKey(path)) {
-            return routes.get(path);
+            return true;
         }
 
         return false;
