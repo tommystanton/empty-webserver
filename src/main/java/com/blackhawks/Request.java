@@ -11,6 +11,8 @@ public class Request {
     private String resource;
     private String httpVersion;
 
+    private String path;
+
     public static Map<String, String> params = new LinkedHashMap<>();
 
     public Request(String requestLine) {
@@ -21,6 +23,7 @@ public class Request {
 
     private void parseResource() {
         String[] parsed = resource.split("\\?");
+        path = parsed[0];
 
         if(parsed.length > 1) {
             String[] pairs = parsed[1].split("&");
@@ -54,5 +57,9 @@ public class Request {
 
     public String getHttpVersion() {
         return httpVersion;
+    }
+
+    public String getPath() {
+        return path;
     }
 }

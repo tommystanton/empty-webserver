@@ -11,11 +11,11 @@ public class Response {
     }
 
     public String getStatusLine() {
-        String resource = request.getResource();
+        String path = request.getPath();
         String statusCode;
         String reasonMessage;
 
-        if(router.isResourceExistent(resource)) {
+        if(router.isResourceExistent(path)) {
             statusCode = "HTTP/1.1 200";
             reasonMessage = "OK";
         }

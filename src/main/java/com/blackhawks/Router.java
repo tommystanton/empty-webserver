@@ -16,10 +16,10 @@ public class Router {
         routes.put("/form", true);
     }
 
-    public boolean isResourceExistent(String resource) {
+    public boolean isResourceExistent(String path) {
 
-        if(routes.containsKey(resource)) {
-            return routes.get(resource);
+        if(routes.containsKey(path)) {
+            return routes.get(path);
         }
 
         return false;
