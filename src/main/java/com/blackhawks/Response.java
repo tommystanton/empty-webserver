@@ -5,9 +5,9 @@ public class Response {
     private Request request;
     private Router router;
 
-    public Response(Request request) {
+    public Response(Request request, Router router) {
         this.request = request;
-        this.router = new Router();
+        this.router = router;
     }
 
     public String getStatusLine() {

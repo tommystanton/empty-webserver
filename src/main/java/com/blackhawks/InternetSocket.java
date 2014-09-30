@@ -27,7 +27,7 @@ public class InternetSocket implements Socket {
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 String input = in.readLine();
 
-                response = new Response(new Request(input));
+                response = new Response(new Request(input), new Router());
                 out.println(response.getStatusLine() + "\r\n");
                 out.flush();
 

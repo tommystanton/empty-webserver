@@ -2,7 +2,7 @@ package com.blackhawks;
 
 import java.util.HashMap;
 
-public class Router {
+public class Router implements RoutingTable {
 
     private HashMap<String, Boolean> routes;
 
@@ -16,6 +16,7 @@ public class Router {
         routes.put("/form", true);
     }
 
+    @Override
     public boolean isResourceExistent(String path) {
 
         if(routes.containsKey(path)) {
