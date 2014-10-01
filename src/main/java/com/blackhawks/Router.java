@@ -15,7 +15,7 @@ public class Router implements RoutingTable {
 
     private void setRoutes() {
         routes.put("/", new EmptyRouteDefinition());
-        routes.put("/form", new EmptyRouteDefinition());
+        routes.put("/form", new FormRouteDefinition());
         routes.put("/hello", new HelloRouteDefinition());
         routes.put("/file1", new FileHandlerRouteDefinition("/file1"));
         routes.put("/file2", new FileHandlerRouteDefinition("/file2"));

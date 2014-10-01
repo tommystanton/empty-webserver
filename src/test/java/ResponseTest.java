@@ -5,6 +5,7 @@ import com.blackhawks.Router;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ResponseTest {
     @Test
@@ -34,7 +35,7 @@ public class ResponseTest {
         byte[] body = response.getBody();
 
         assertEquals("HTTP/1.1 200 OK", new String(statusLine));
-        assertEquals("", new String(body));
+        assertTrue(new String(body).matches(".*file1.*"));
     }
 
     @Test
@@ -49,7 +50,10 @@ public class ResponseTest {
         byte[] body = response.getBody();
 
         assertEquals("HTTP/1.1 200 OK", new String(statusLine));
-        assertEquals("", new String(body));
+        assertTrue(new String(body).matches(".*<a href='file1'>file1</a>.*"));
+        assertTrue(new String(body).matches(".*<a href='file2'>file2</a>.*"));
+
+
     }
 
     @Test
