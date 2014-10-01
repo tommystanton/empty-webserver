@@ -16,7 +16,7 @@ public class ReadFilesTest {
   public void readTextFile() throws Exception
   {
     String expected = new String("file1 contents");
-    Path path = Paths.get("./file1");
+    Path path = Paths.get("./public/file1");
     byte[] data = Files.readAllBytes(path);
     assertEquals(expected, new String(data));
 

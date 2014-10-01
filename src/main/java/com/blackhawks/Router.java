@@ -17,7 +17,14 @@ public class Router implements RoutingTable {
         routes.put("/", new EmptyRouteDefinition());
         routes.put("/form", new EmptyRouteDefinition());
         routes.put("/hello", new HelloRouteDefinition());
-        routes.put("/file1", new File1RouteDefinition());
+        routes.put("/file1", new FileHandlerRouteDefinition("/file1"));
+        routes.put("/file2", new FileHandlerRouteDefinition("/file2"));
+        routes.put("/image.gif", new FileHandlerRouteDefinition("/image.gif"));
+        routes.put("/image.jpeg", new FileHandlerRouteDefinition("/image.jpeg"));
+        routes.put("/image.png", new FileHandlerRouteDefinition("/image.png"));
+        routes.put("/partial_content.txt", new FileHandlerRouteDefinition("/partial_content.txt"));
+        routes.put("/partial-content.txt", new FileHandlerRouteDefinition("/patch-content.txt"));
+        routes.put("/text-file.txt", new FileHandlerRouteDefinition("/text-file.txt"));
     }
 
     public byte[] executeRoute(String path) { // add exception or try/catch and throw custom message
