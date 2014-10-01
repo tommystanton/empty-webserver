@@ -10,5 +10,8 @@ Spec](https://github.com/8thlight/cob_spec).
 
 ## Building the JAR
 
-    $ mvn package
-    $ jar -jar jars/server-1.0.jar
+    $ mvn assembly:assembly -DdescriptorId=jar-with-dependencies
+    $ java -jar target/server-1.0-jar-with-dependencies.jar
+
+(Got this idea from [Stack
+Overflow](http://stackoverflow.com/a/1729202/1265245)).
