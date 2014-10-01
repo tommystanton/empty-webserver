@@ -2,14 +2,14 @@ package com.blackhawks;
 
 public class Response {
 
-    private String statusLine;
+    private byte[] statusLine;
     private byte[] body;
 
-    public void setStatusLine(String statusLine) {
+    public void setStatusLine(byte[] statusLine) {
         this.statusLine = statusLine;
     }
 
-    public String getStatusLine() {
+    public byte[] getStatusLine() {
         return statusLine;
     }
 

@@ -12,18 +12,21 @@ public class RequestHandler {
 
         Response response = new Response(); // TODO Decouple?
 
-        String statusLine = getStatusLine(request);
+        byte[] statusLine = getStatusLine(request);
         response.setStatusLine(statusLine);
 
         if(router.isResourceExistent(path)) {
             byte[] body = router.executeRoute(path);
             response.setBody(body);
         }
+        else {
+            response.setBody("".getBytes());
+        }
 
         return response;
     }
 
-    public String getStatusLine(Request request) {
+    public byte[] getStatusLine(Request request) {
         String path = request.getPath();
         String statusCode;
         String reasonMessage;
@@ -37,6 +40,8 @@ public class RequestHandler {
             reasonMessage = "Not Found";
         }
 
-        return statusCode + " " + reasonMessage;
+        String statusLine = statusCode + " " + reasonMessage;
+
+        return statusLine.getBytes();
     }
 }
