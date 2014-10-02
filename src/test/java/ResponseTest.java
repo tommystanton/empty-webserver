@@ -93,4 +93,22 @@ public class ResponseTest {
         assertEquals("Content-Type: text/plain; charset=UTF-8", new String(responseHeaderFields));
         assertEquals("Hello John Doe!", new String(body));
     }
+
+
+    @Test
+    public void itRespondsWithABodyReportingParameters() throws Exception
+    {
+        RequestHandler handler = new RequestHandler(new Router());
+
+        Request request = new Request("GET /parameters?variable_1=foo&variable_2=bar HTTP/1.1");
+        Response response = handler.respond(request);
+
+        byte[] statusLine = response.getStatusLine();
+        byte[] responseHeaderFields = response.getResponseHeaderFields();
+        byte[] body = response.getBody();
+
+        assertEquals("HTTP/1.1 200 OK", new String(statusLine));
+        assertEquals("Content-Type: text/plain; charset=UTF-8", new String(responseHeaderFields));
+        assertEquals("variable_1 = foo\nvariable_2 = bar\n", new String(body));
+    }
 }

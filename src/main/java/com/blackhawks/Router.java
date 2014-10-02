@@ -25,6 +25,8 @@ public class Router implements RoutingTable {
         routes.put("/partial_content.txt", new FileHandlerRouteDefinition("/partial_content.txt"));
         routes.put("/partial-content.txt", new FileHandlerRouteDefinition("/patch-content.txt"));
         routes.put("/text-file.txt", new FileHandlerRouteDefinition("/text-file.txt"));
+        routes.put("/parameters", new ParamRouteDefinition());
+
     }
 
     public byte[] executeRoute(Request request) {
