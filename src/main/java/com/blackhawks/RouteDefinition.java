@@ -1,5 +1,5 @@
 package com.blackhawks;
 
 public interface RouteDefinition {
-    byte[] execute();
+    byte[] execute(Request request);
 }

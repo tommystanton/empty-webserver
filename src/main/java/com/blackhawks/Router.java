@@ -27,9 +27,11 @@ public class Router implements RoutingTable {
         routes.put("/text-file.txt", new FileHandlerRouteDefinition("/text-file.txt"));
     }
 
-    public byte[] executeRoute(String path) { // add exception or try/catch and throw custom message
-        RouteDefinition routeDefintion = routes.get(path);
-        byte[] data = routeDefintion.execute();
+    public byte[] executeRoute(Request request) {
+        RouteDefinition routeDefintion = routes.get(request.getPath());
+
+        byte[] data = routeDefintion.execute(request);
+
         return data;
     }
 

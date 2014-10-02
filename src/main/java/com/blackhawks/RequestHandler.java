@@ -31,7 +31,7 @@ public class RequestHandler {
             responseHeaderFields = responseHeaders.getBytes();
             response.setResponseHeaderFields(responseHeaderFields);
 
-            byte[] body = router.executeRoute(path);
+            byte[] body = router.executeRoute(request);
             response.setBody(body);
         }
         else {

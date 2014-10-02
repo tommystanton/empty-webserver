@@ -1,5 +1,6 @@
 package com.blackhawks.routes;
 
+import com.blackhawks.Request;
 import com.blackhawks.RouteDefinition;
 
 import java.io.File;
@@ -9,7 +10,7 @@ public class EmptyRouteDefinition implements RouteDefinition {
 
 
     @Override
-    public byte[] execute() {
+    public byte[] execute(Request request) {
         return displayFiles();
     }
 

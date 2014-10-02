@@ -82,7 +82,7 @@ public class ResponseTest {
     {
         RequestHandler handler = new RequestHandler(new Router());
 
-        Request request = new Request("GET /hello HTTP/1.1");
+        Request request = new Request("GET /hello?name=John%20Doe HTTP/1.1");
         Response response = handler.respond(request);
 
         byte[] statusLine = response.getStatusLine();
@@ -91,6 +91,6 @@ public class ResponseTest {
 
         assertEquals("HTTP/1.1 200 OK", new String(statusLine));
         assertEquals("Content-Type: text/plain; charset=UTF-8", new String(responseHeaderFields));
-        assertEquals("hello", new String(body));
+        assertEquals("Hello John Doe!", new String(body));
     }
 }

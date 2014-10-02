@@ -1,5 +1,6 @@
 package com.blackhawks.routes;
 
+import com.blackhawks.Request;
 import com.blackhawks.RouteDefinition;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ public class FileHandlerRouteDefinition implements RouteDefinition {
     }
 
     @Override
-    public byte[] execute() {
+    public byte[] execute(Request request) {
 
         byte[] data = new byte[100];
 
