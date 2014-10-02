@@ -4,6 +4,9 @@ import com.blackhawks.Response;
 import com.blackhawks.Router;
 import org.junit.Test;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -110,5 +113,18 @@ public class ResponseTest {
         assertEquals("HTTP/1.1 200 OK", new String(statusLine));
         assertEquals("Content-Type: text/plain; charset=UTF-8", new String(responseHeaderFields));
         assertEquals("variable_1 = foo\nvariable_2 = bar\n", new String(body));
+    }
+
+    @Test
+    public void itRespondsWithABodyReportingParametersNoBleedState() throws Exception
+    {
+        RequestHandler handler = new RequestHandler(new Router());
+
+        Request request = new Request("GET /parameters?morefoo=morebar HTTP/1.1");
+        Response response = handler.respond(request);
+        Map<String, String> expectedParams = new LinkedHashMap<>();
+        expectedParams.put("morefoo", "morebar");
+
+        assertEquals(expectedParams, request.getParams());
     }
 }

@@ -13,10 +13,11 @@ public class Request {
 
     private String path;
 
-    public static Map<String, String> params = new LinkedHashMap<>();
+    public static Map<String, String> params;
 
     public Request(String requestLine) {
         this.requestLine = requestLine;
+        this.params = new LinkedHashMap<>();
         parseRequestLine();
         parseResource();
     }
