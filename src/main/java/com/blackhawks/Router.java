@@ -29,10 +29,10 @@ public class Router implements RoutingTable {
 
     }
 
-    public byte[] executeRoute(Request request) {
+    public byte[] executeRoute(Request request, Response response) {
         RouteDefinition routeDefintion = routes.get(request.getPath());
 
-        byte[] data = routeDefintion.execute(request);
+        byte[] data = routeDefintion.execute(request, response);
 
         return data;
     }

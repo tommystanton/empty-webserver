@@ -1,6 +1,7 @@
 package com.blackhawks.routes;
 
 import com.blackhawks.Request;
+import com.blackhawks.Response;
 import com.blackhawks.RouteDefinition;
 
 import java.io.IOException;
@@ -16,7 +17,8 @@ public class FileHandlerRouteDefinition implements RouteDefinition {
     }
 
     @Override
-    public byte[] execute(Request request) {
+    public byte[] execute(Request request, Response response) {
+        // XXX If image, set media type to image/png, etc
 
         byte[] data = new byte[100];
 

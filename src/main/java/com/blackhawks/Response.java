@@ -6,6 +6,12 @@ public class Response {
     private byte[] responseHeaderFields;
     private byte[] body;
 
+    private String mediaType;
+
+    public Response() {
+        this.mediaType = "text/plain";
+    }
+
     public void setStatusLine(byte[] statusLine) {
         this.statusLine = statusLine;
     }
@@ -28,5 +34,13 @@ public class Response {
 
     public byte[] getBody() {
         return body;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
     }
 }

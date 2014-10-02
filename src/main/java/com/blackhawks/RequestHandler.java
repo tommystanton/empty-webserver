@@ -20,26 +20,37 @@ public class RequestHandler {
         response.setStatusLine(statusLine);
 
         if (router.isResourceExistent(path)) {
-            byte[] responseHeaderFields;
+            byte[] body = router.executeRoute(request, response);
 
-            // TODO Determine response headers dynamically
-            String responseHeaders = StringUtils.join(new String[]{
-                "Content-Type: text/plain; charset=UTF-8"
-                // TODO Content-Length
-            }, "\r\n");
+            String responseHeaders = StringUtils.join(
+                constructResponseHeaders(response),
+                "\r\n"
+            );
 
-            responseHeaderFields = responseHeaders.getBytes();
-            response.setResponseHeaderFields(responseHeaderFields);
-
-            byte[] body = router.executeRoute(request);
+            response.setResponseHeaderFields(responseHeaders.getBytes());
             response.setBody(body);
         }
         else {
-            response.setResponseHeaderFields("Content-Type: text/plain; charset=UTF-8".getBytes());
+            String responseHeaders = StringUtils.join(
+                constructResponseHeaders(response),
+                "\r\n"
+            );
+            response.setResponseHeaderFields(responseHeaders.getBytes());
             response.setBody("".getBytes());
         }
 
         return response;
+    }
+
+    private String[] constructResponseHeaders(Response response) {
+        String mimeType = response.getMediaType();
+
+        String[] responseHeaders = new String[]{
+            "Content-Type: " + mimeType + "; charset=UTF-8"
+            // TODO Content-Length
+        };
+
+        return responseHeaders;
     }
 
     public byte[] getStatusLine(Request request) {

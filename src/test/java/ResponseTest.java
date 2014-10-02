@@ -41,10 +41,12 @@ public class ResponseTest {
         byte[] body = response.getBody();
 
         assertEquals("HTTP/1.1 200 OK", new String(statusLine));
-        assertEquals("Content-Type: text/plain; charset=UTF-8", new String(responseHeaderFields));
+        assertEquals("Content-Type: text/html; charset=UTF-8", new String(responseHeaderFields));
         assertTrue(new String(body).matches(".*<a href='file1'>file1</a>.*"));
         assertTrue(new String(body).matches(".*<a href='file2'>file2</a>.*"));
     }
+
+    // TODO Test for image URL: should _not_ be text/plain for Content-Type
 
     @Test
     public void itCanHandlePost() throws Exception

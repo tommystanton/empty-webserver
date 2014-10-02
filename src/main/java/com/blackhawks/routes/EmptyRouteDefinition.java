@@ -1,6 +1,7 @@
 package com.blackhawks.routes;
 
 import com.blackhawks.Request;
+import com.blackhawks.Response;
 import com.blackhawks.RouteDefinition;
 
 import java.io.File;
@@ -10,7 +11,9 @@ public class EmptyRouteDefinition implements RouteDefinition {
 
 
     @Override
-    public byte[] execute(Request request) {
+    public byte[] execute(Request request, Response response) {
+        response.setMediaType("text/html");
+
         return displayFiles();
     }
 
