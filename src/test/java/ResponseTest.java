@@ -29,28 +29,11 @@ public class ResponseTest {
     }
 
     @Test
-    public void itCanHandle200() throws Exception
+    public void itDisplaysAPublicDirectoryListingAtRoot() throws Exception
     {
         RequestHandler handler = new RequestHandler(new Router());
 
         Request request = new Request("GET / HTTP/1.1");
-        Response response = handler.respond(request);
-
-        byte[] statusLine = response.getStatusLine();
-        byte[] responseHeaderFields = response.getResponseHeaderFields();
-        byte[] body = response.getBody();
-
-        assertEquals("HTTP/1.1 200 OK", new String(statusLine));
-        assertEquals("Content-Type: text/plain; charset=UTF-8", new String(responseHeaderFields));
-        assertTrue(new String(body).matches(".*file1.*"));
-    }
-
-    @Test
-    public void itCanHandleGetWithParams() throws Exception
-    {
-        RequestHandler handler = new RequestHandler(new Router());
-
-        Request request = new Request("GET /?name=Bob HTTP/1.1");
         Response response = handler.respond(request);
 
         byte[] statusLine = response.getStatusLine();
